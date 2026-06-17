@@ -53,7 +53,12 @@ function Grid() {
 export default function Background3D() {
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 20], fov: 75 }}>
+      <Canvas
+        camera={{ position: [0, 0, 20], fov: 75 }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: false, powerPreference: "high-performance" }}
+        performance={{ min: 0.5 }}
+      >
         <color attach="background" args={["#06070A"]} />
         <fog attach="fog" args={["#06070A", 10, 50]} />
         <ambientLight intensity={0.5} />

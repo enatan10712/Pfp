@@ -10,18 +10,26 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     setIsMounted(true);
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          setIsLoaded(true);
-          return 100;
-        }
-        return prev + 10;
-      });
-    }, 50);
 
-    return () => clearInterval(timer);
+    // Simulate real progress but with a minimum duration
+    const startTime = Date.now();
+    const minDuration = 1500;
+
+    const updateProgress = () => {
+      const elapsed = Date.now() - startTime;
+      const calculatedProgress = Math.min((elapsed / minDuration) * 100, 100);
+
+      setProgress(calculatedProgress);
+
+      if (calculatedProgress < 100) {
+        requestAnimationFrame(updateProgress);
+      } else {
+        setTimeout(() => setIsLoaded(true), 200);
+      }
+    };
+
+    const frame = requestAnimationFrame(updateProgress);
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   if (!isMounted) return null;

@@ -1,10 +1,12 @@
 "use client";
 
 import { Suspense, useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import HeroScene from "@/components/3d/HeroScene";
 import RoleSwitcher from "./RoleSwitcher";
+
+const HeroScene = dynamic(() => import("@/components/3d/HeroScene"), { ssr: false });
+const Canvas = dynamic(() => import("@react-three/fiber").then((mod) => mod.Canvas), { ssr: false });
 import { ArrowRight, Download, Eye } from "lucide-react";
 import ResumeExperience from "@/components/resume/ResumeExperience";
 
@@ -19,14 +21,18 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} color="#00E5FF" intensity={2} />
-          <Suspense fallback={null}>
+      <div className="absolute inset-0 z-0 opacity-40">
+        <Suspense fallback={<div className="w-full h-full bg-background" />}>
+          <Canvas
+            camera={{ position: [0, 0, 10], fov: 50 }}
+            dpr={[1, 2]}
+            gl={{ antialias: false, powerPreference: "high-performance" }}
+          >
+            <ambientLight intensity={0.5} />
+            <pointLight position={[10, 10, 10]} color="#00E5FF" intensity={2} />
             <HeroScene onResumeOpen={() => setIsResumeOpen(true)} />
-          </Suspense>
-        </Canvas>
+          </Canvas>
+        </Suspense>
       </div>
 
       <div className="container mx-auto px-6 z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
