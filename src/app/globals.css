@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #06070A;
+  --color-secondary: #111318;
+  --color-accent-blue: #00E5FF;
+  --color-accent-cyan: #00FFF2;
+  --color-accent-purple: #7000FF;
+  --color-accent-green: #00FF94;
+
+  --background-image-glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --background-image-cyber-grid: linear-gradient(to right, #111318 1px, transparent 1px), linear-gradient(to bottom, #111318 1px, transparent 1px);
+}
+
+:root {
+  --background: #06070a;
+  --foreground: #ededed;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+@layer base {
+  * {
+    @apply border-white/10;
+  }
+}
+
+.glass {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10;
+}
+
+.cyber-border {
+  @apply border-accent-blue/50 shadow-[0_0_15px_rgba(0,229,255,0.2)];
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #06070A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #111318;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7000FF;
+}
