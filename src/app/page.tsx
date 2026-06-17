@@ -17,6 +17,7 @@ const AIAssistant = dynamic(() => import("@/components/shared/AIAssistant"), { s
 const Terminal = dynamic(() => import("@/components/shared/Terminal"), { ssr: false });
 
 export default function Home() {
+  console.log("HOME PAGE RENDERED");
   return (
     <>
       <Background3D />

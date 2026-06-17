@@ -7,6 +7,7 @@ import * as THREE from "three";
 import ResumeObject from "@/components/resume/ResumeObject";
 
 export default function NeuralNetwork({ onResumeOpen }: { onResumeOpen?: () => void }) {
+  console.log("HERO SCENE RENDERED");
   const groupRef = useRef<THREE.Group>(null!);
   const nodes = useMemo(() => {
     return Array.from({ length: 20 }).map(() => ({

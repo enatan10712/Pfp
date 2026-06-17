@@ -11,6 +11,7 @@ import { ArrowRight, Download, Eye } from "lucide-react";
 import ResumeExperience from "@/components/resume/ResumeExperience";
 
 export default function Hero() {
+  console.log("HERO COMPONENT RENDERED");
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   useEffect(() => {

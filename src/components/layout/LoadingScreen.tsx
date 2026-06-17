@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function LoadingScreen() {
+  console.log("LOADING SCREEN RENDERED");
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -32,8 +33,16 @@ export default function LoadingScreen() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  if (!isMounted) return null;
-  if (isLoaded) return null;
+  if (!isMounted) {
+    console.log("LOADING SCREEN NOT MOUNTED");
+    return null;
+  }
+  if (isLoaded) {
+    console.log("LOADING SCREEN LOADED - HIDING");
+    return null;
+  }
+
+  console.log(`LOADING SCREEN ACTIVE - PROGRESS: ${progress}%`);
 
   return (
     <div

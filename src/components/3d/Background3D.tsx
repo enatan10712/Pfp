@@ -51,6 +51,7 @@ function Grid() {
 }
 
 export default function Background3D() {
+  console.log("BACKGROUND 3D RENDERED");
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none">
       <Canvas
